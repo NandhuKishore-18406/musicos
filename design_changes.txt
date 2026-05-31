@@ -1,0 +1,144 @@
+// finished
+IMPORTANT DESIGN OVERRIDE
+
+Read design_changes.txt before making UI decisions.
+
+Discard previous visual directions:
+
+* chunky bezels
+* physical hardware styling
+* gadget-inspired controls
+* molded plastic appearance
+* industrial device aesthetic
+
+NEW DESIGN DIRECTION
+
+The application should feel like a dedicated music workstation running on an old DOS machine connected to an amber CRT monitor.
+
+Primary inspirations:
+
+* MS-DOS
+* DR-DOS
+* FreeDOS
+* Norton Commander
+* old BBS systems
+* ANSI terminal applications
+* amber CRT terminals
+* monochrome workstation displays
+
+EMOTIONAL GOAL
+
+The user should feel like they are sitting in front of an old computer late at night managing a personal music archive.
+
+The application should feel:
+
+* nostalgic
+* focused
+* calm
+* text-centric
+* keyboard-driven
+* personal
+* archival
+
+VISUAL STYLE
+
+* near-black background
+* dim amber-orange phosphor text
+* muted orange highlights
+* subtle CRT glow
+* warm terminal appearance
+* low brightness
+* low contrast
+* monochrome-first presentation
+
+Avoid:
+
+* bright neon colors
+* cyberpunk aesthetics
+* RGB effects
+* synthwave styling
+* modern dashboard layouts
+
+LAYOUT RULES
+
+* keyboard-first
+* text-first
+* information-dense
+* minimal icons
+* minimal decorative elements
+* terminal-inspired structure
+* invisible borders
+* structure created through alignment and spacing
+* no floating cards
+* no glassmorphism
+* no neumorphism
+
+TYPOGRAPHY
+
+* monospace fonts only
+* terminal-style hierarchy
+* text is the primary design element
+
+CRT EFFECTS
+
+Use subtly:
+
+* faint scanlines
+* phosphor bloom
+* cursor blink
+* terminal redraw effects
+* text reveal effects
+
+Never reduce readability.
+
+BOOT EXPERIENCE
+
+On startup show a short DOS-style boot sequence:
+
+Starting MUSICOS...
+Checking memory ........ OK
+Mounting C:\ .......... OK
+Scanning library ...... OK
+Loading playlists ..... OK
+Initializing audio .... OK
+Loading shell ......... OK
+
+Then:
+
+C:> DIR
+
+Display fake music folders.
+
+Then:
+
+C:> MUSIC.EXE
+
+Launch the application.
+
+Requirements:
+
+* duration 2–4 seconds
+* non - skippable
+* replayable from settings
+* shown only on first launch by default
+
+KEYBOARD EXPERIENCE
+
+The application must be fully usable without a mouse.
+
+
+Display available shortcuts in the status area.
+
+SHADCN RULE
+
+Use shadcn only as low-level primitives.
+
+The final UI must not visually resemble a typical shadcn application.
+ 
+it must always show a ">" at the bottom to get commands
+example commands 
+PLAY , PAUSE , RANDSONG, RANDALB , QUEUE , QUEUELIST , PLAYLIST , FAVSONGS  
+
+finished //
+
+make the boot sequence every time i refresh

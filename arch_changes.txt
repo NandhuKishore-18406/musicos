@@ -1,0 +1,296 @@
+//finished
+PLAYER STORAGE & PLAYBACK ARCHITECTURE
+
+Read all files in .agents and design_changes.txt before implementation.
+
+Implement the music engine as an offline-first local music workstation.
+
+Do NOT upload, import, or duplicate music files into the application database.
+
+Store only:
+
+* file handles
+* metadata
+* derived artwork thumbnails
+* playback history
+* user data
+
+ARCHITECTURE
+
+File System Access API
+↓
+Music Scanner
+↓
+Metadata Extraction Worker
+↓
+Dexie Database
+↓
+Playback Engine
+↓
+Player UI
+
+FILE ACCESS
+
+Use File System Access API as the primary source of truth.
+
+The user selects one or more music folders.
+
+Persist folder handles for future sessions.
+
+Example flow:
+
+User Music Folder
+↓
+Directory Handle
+↓
+Recursive Scan
+↓
+Metadata Extraction
+↓
+Dexie Storage
+
+Never copy FLAC files into IndexedDB.
+
+Only store references and metadata.
+
+PERMISSIONS
+
+Request access once.
+
+Persist handles.
+
+On startup:
+
+* verify permissions
+* re-request only when necessary
+* gracefully handle revoked permissions
+
+SCANNING
+
+Implement recursive folder scanning.
+
+Supported formats:
+
+* FLAC
+* MP3
+* AAC
+* M4A
+* OGG
+* OPUS
+* WAV
+* ALAC
+
+Run scanning in a Web Worker.
+
+Never block the UI thread.
+
+Large library target:
+
+* 5,000+
+* 10,000+
+* 20,000+ tracks
+
+The application must remain responsive during indexing.
+
+METADATA
+
+Use:
+
+music-metadata-browser
+
+Extract:
+
+* title
+* artist
+* album
+* album artist
+* track number
+* disc number
+* genre
+* year
+* duration
+* embedded artwork
+* bitrate
+* codec
+* sample rate
+* bit depth
+
+Store metadata only.
+
+Never store audio blobs permanently.
+
+DATABASE
+
+Use Dexie.
+
+Tables:
+
+tracks
+albums
+artists
+playlists
+queues
+favorites
+history
+lyrics
+settings
+
+Track schema should include:
+
+id
+fileHandleId
+title
+artist
+album
+albumArtist
+genre
+year
+duration
+bitrate
+codec
+sampleRate
+bitDepth
+playCount
+liked
+lastPlayed
+artworkId
+
+LYRICS CACHE
+
+Cache lyrics locally.
+
+Schema:
+
+trackId
+lyrics
+source
+cachedAt
+
+Artwork should be stored separately from tracks.
+
+Generate thumbnails once.
+
+Reuse everywhere.
+
+PLAYBACK ENGINE
+
+Use HTMLAudioElement initially.
+
+Playback flow:
+
+File Handle
+↓
+getFile()
+↓
+Object URL
+↓
+Audio Engine
+↓
+Player State
+
+Do not preload entire libraries.
+
+Load files only when needed.
+
+PLAYER STATE
+
+Manage through Zustand.
+
+State includes:
+
+currentTrack
+queue
+playbackState
+currentTime
+duration
+volume
+shuffle
+repeatMode
+visualizerMode
+
+Persist:
+
+volume
+repeat mode
+shuffle state
+current queue
+last track
+playback position
+
+SESSION RESTORE
+
+On launch:
+
+restore:
+
+* queue
+* current track
+* playback position
+* volume
+* playback settings
+
+Resume previous session when possible.
+
+ALBUM ART
+
+Extract embedded artwork.
+
+Generate optimized thumbnails.
+
+Cache thumbnails.
+
+Avoid loading full artwork in lists.
+
+PERFORMANCE RULES
+
+Use React Virtuoso for large track lists.
+
+Use workers for:
+
+* scanning
+* metadata extraction
+* artwork processing
+
+Avoid rerendering large collections.
+
+Query Dexie indexes instead of rescanning files.
+
+Search must operate entirely from database metadata.
+
+TARGET EXPERIENCE
+
+The application should feel instant after the initial scan.
+
+First scan:
+
+* potentially minutes for huge libraries
+
+Every launch afterward:
+
+* metadata loaded from Dexie
+* library available immediately
+
+DESKTOP STRATEGY
+
+Build as a PWA first.
+
+Use:
+
+* React
+* Vite
+* Dexie
+* Zustand
+* File System Access API
+* music-metadata-browser
+* React Virtuoso
+* Web Workers
+* HTMLAudioElement
+
+Do not introduce Electron unless a future requirement demands native integrations.
+
+The system should be capable of handling large FLAC libraries while maintaining a responsive DOS-style music workstation experience.
+
+finished//
+
+the player is playing and pausing the songs repeatedly and the data shows but clicking on it does shows file not found so every time i
+refresh automatically mount the previous dir if possible if not clean slate on every reload

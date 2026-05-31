@@ -1,0 +1,18 @@
+[plugin:vite:import-analysis] Failed to resolve import "@/components/ui/card" from "src/components/player/ErrorPopup.jsx". Does the file exist?
+
+/home/nandhu/coding/reactjs/todoapp/src/components/player/ErrorPopup.jsx:1:69
+
+1  |  import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+   |                                                                        ^
+2  |  import { useUIStore } from "../../store/playerStore";
+3  |  var _jsxFileName = "/home/nandhu/coding/reactjs/todoapp/src/components/player/ErrorPopup.jsx";
+
+    at TransformPluginContext._formatLog (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:30488:39)
+    at TransformPluginContext.error (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:30485:14)
+    at normalizeUrl (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:27728:18)
+    at async file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:27791:30
+    at async Promise.all (index 0)
+    at async TransformPluginContext.transform (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:27759:4)
+    at async EnvironmentPluginContainer.transform (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:30273:14)
+    at async loadAndTransform (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:24532:26)
+    at async viteTransformMiddleware (file:///home/nandhu/coding/reactjs/todoapp/node_modules/vite/dist/node/chunks/node.js:24326:20)
