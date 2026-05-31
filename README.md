@@ -1,4 +1,4 @@
-# MUSICOS v1.0 📟
+# MUSICOS (Ai Assisted)
 
 **A keyboard-driven, retro-terminal local music player built for the web.**
 
